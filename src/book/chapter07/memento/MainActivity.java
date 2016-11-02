@@ -55,10 +55,10 @@ public class MainActivity extends Activity {
 					public void onDateSet(DatePicker view, int year, int month,int day) {
 						// TODO Auto-generated method stub
 						//设置文本编辑框的内容为设置的日期，month需要从0开始，所以月份为month+1
-						date.setText(year+"-"+(month+1)+"-"+day);	
+						date.setText(year+"-"+(month+1)+"-"+day);}
 					
 				},c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)).show();
-			
+				}
 			});
 			
 		//事件监听器写好后，为按钮注册单击事件处理
@@ -99,25 +99,25 @@ public class MainActivity extends Activity {
 		}
 	}
 
-		public Cursor queryMemento(SQLiteDatabase db, String subject,String body, String date) {
-			// TODO Auto-generated method stub
-			Cursor cursor=db.rawQuery("select*from memento_tb where subject like?and body like? and date like?",
-					new String[]{"%"+subject+"%","%"+body+"%","%"+date+"%"});//执行查询操作，提供模糊查询功能
-			return cursor;
-		}
+		
 
 		public void addMemento(SQLiteDatabase db, String subject,String body, String date) {
 			// TODO Auto-generated method stub
 			db.execSQL("insert into memento_tb values(null,?,?,?)",new String[]{subject,body,date});//执行插入操作
 			this.subject.setText("");//添加数据后，将所有的文本编辑框的内容设为空
 			this.body.setText("");
-			this.date.setText("");
-			
+			this.date.setText("");			
+		}
+		
+		public Cursor queryMemento(SQLiteDatabase db, String subject,String body, String date) {
+			// TODO Auto-generated method stub
+			Cursor cursor=db.rawQuery("select*from memento_tb where subject like?and body like? and date like?",
+					new String[]{"%"+subject+"%","%"+body+"%","%"+date+"%"});//执行查询操作，提供模糊查询功能
+			return cursor;
 		}
 		protected void onDestroy() {
 			if(mydbHelper!=null){
 				mydbHelper.close();
 			}
 		}
-
-}
+	}

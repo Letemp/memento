@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 	
-	final String CREATE_TABLE_SQL="create table memento_tb(_id integer primary"+"key autoincrement,subject,bodt,date)";//创建memento表的SQL语句
+	final String CREATE_TABLE_SQL="create table memento_tb(_id integer primary"+"key autoincrement,subject,body,date)";//创建memento表的SQL语句
 
 	public MyDatabaseHelper(Context context, String name,CursorFactory factory, int version) {
 		super(context, name, factory, version);//构造方法
@@ -27,3 +27,4 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 	}
 
 }
+
